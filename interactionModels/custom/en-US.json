@@ -1,0 +1,268 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "pizza dom",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "HelloWorldIntent",
+          "slots": [],
+          "samples": [
+            "merhaba",
+            "hello",
+            "how are you",
+            "say hi world",
+            "say hi",
+            "hi",
+            "say hello world",
+            "say hello"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "OrderPizzaIntent",
+          "slots": [
+            {
+              "name": "topping",
+              "type": "AMAZON.Food",
+              "samples": [
+                "i could go for {topping}",
+                "{topping}"
+              ]
+            },
+            {
+              "name": "crust",
+              "type": "crust_type",
+              "samples": [
+                "{crust}"
+              ]
+            },
+            {
+              "name": "size",
+              "type": "size_type",
+              "samples": [
+                "{size}"
+              ]
+            }
+          ],
+          "samples": [
+            "for a {size} {crust} crust pizza with {topping}",
+            "i\u0027d like a {size} {crust} crust pizza with {topping}",
+            "i\u0027d like a {size} pizza with {topping}",
+            "to order a {size} pizza",
+            "can i get a {topping} pizza with {crust} crust",
+            "i\u0027d like a {crust} crust pizza with {topping}",
+            "i\u0027d like a {crust} crust pizza",
+            "i\u0027d like a {crust} pizza",
+            "order a {topping} pizza",
+            "I am hungry",
+            "order a pizza"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "stuffed"
+              }
+            },
+            {
+              "name": {
+                "value": "thick",
+                "synonyms": [
+                  "regular"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "thin"
+              }
+            }
+          ],
+          "name": "crust_type"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "large"
+              }
+            },
+            {
+              "name": {
+                "value": "medium"
+              }
+            },
+            {
+              "name": {
+                "value": "small"
+              }
+            }
+          ],
+          "name": "size_type"
+        }
+      ],
+      "modelConfiguration": {
+        "fallbackIntentSensitivity": {
+          "level": "LOW"
+        }
+      }
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "OrderPizzaIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "topping",
+              "type": "AMAZON.Food",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.391419800249.1394082118651"
+              },
+              "validations": [
+                {
+                  "type": "isInSet",
+                  "prompt": "Slot.Validation.391419800249.1394082118651.796059346831",
+                  "values": [
+                    "pineapple",
+                    "paneer",
+                    "mushroom",
+                    "cheese"
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "crust",
+              "type": "crust_type",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.816623617079.81116694376"
+              },
+              "validations": [
+                {
+                  "type": "isInSet",
+                  "prompt": "Slot.Validation.816623617079.81116694376.963641495255",
+                  "values": [
+                    "stuffed",
+                    "thick",
+                    "thin"
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "size",
+              "type": "size_type",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.816623617079.1321426179756"
+              },
+              "validations": [
+                {
+                  "type": "isInSet",
+                  "prompt": "Slot.Validation.816623617079.1321426179756.1058794172062",
+                  "values": [
+                    "small",
+                    "large",
+                    "medium"
+                  ]
+                }
+              ]
+            }
+          ],
+          "delegationStrategy": "ALWAYS"
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.391419800249.1394082118651",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "what topping would you like?"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.391419800249.1394082118651.796059346831",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "we server paneer, cheese, mushroom or pineapple."
+          },
+          {
+            "type": "PlainText",
+            "value": "you can choose paneer, cheese, mushroom or pineapple."
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.816623617079.81116694376",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "what sort of crust do you want?"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.816623617079.81116694376.963641495255",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "we offer thin, thick and stuffed crust. which would you like?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.816623617079.1321426179756",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "what size of pizza"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.816623617079.1321426179756.1058794172062",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "you can choose small, medium or large. what do you want?"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "9"
+}
